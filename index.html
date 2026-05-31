@@ -108,6 +108,14 @@ h1{font-size:3.2rem!important;line-height:1;}
 h2{font-size:2rem!important;}
 }
 
+
+@media (max-width:768px){
+    #hero{padding-bottom:4rem!important;}
+    .hero-reveal{text-align:center;margin-top:2rem;}
+    .hero-reveal .flex{justify-content:center;}
+    .tech-ring-container{max-width:280px;margin:auto;}
+}
+
 </style>
 </head>
 <body class="selection:bg-sky-500/30">
@@ -141,7 +149,7 @@ h2{font-size:2rem!important;}
         <a href="#contact" class="hover:text-sky-400">Connect</a>
     </nav>
 
-    <section id="hero" class="min-h-screen flex items-center pt-32 pb-64 overflow-hidden">
+    <section id="hero" class="min-h-screen flex items-center pt-32 pb-20 md:pb-64 overflow-hidden">
         <div class="max-w-7xl mx-auto px-6 w-full grid md:grid-cols-12 gap-12 items-center">
             
             <div class="md:col-span-5 relative order-2 md:order-1 flex justify-center" data-tilt data-tilt-max="5">
