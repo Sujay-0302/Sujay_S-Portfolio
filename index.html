@@ -35,15 +35,15 @@
         .mono { font-family: 'JetBrains Mono', monospace; }
 
         /* Custom Cursor - Desktop Only */
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
             #cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
             #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--primary); border-radius: 50%; pointer-events: none; z-index: 9998; transition: transform 0.15s ease-out; }
         }
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             #cursor, #cursor-follower { display: none !important; }
         }
 
-        /* UI Elements & Next-Level Glassmorphism */
+        /* Glassmorphism Matrix */
         .ultra-glass { 
             background: rgba(15, 23, 42, 0.7); 
             backdrop-filter: blur(20px) saturate(180%); 
@@ -52,7 +52,7 @@
             transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
         
-        /* Interactive Nav */
+        /* Interactive Nav Links */
         nav a { position: relative; transition: all 0.3s ease; }
         nav a::after {
             content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px;
@@ -69,17 +69,17 @@
         .reveal.group:hover { transform: translateY(-5px); }
         .reveal.group:hover img { transform: scale(1.03); }
 
-        /* Marquee System */
+        /* Marquee Structural Logic */
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .animate-marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
         .marquee-container:hover .animate-marquee { animation-play-state: paused; }
-        .marquee-item { width: 80vw; max-width: 360px; flex-shrink: 0; display: flex; flex-direction: column; transition: transform 0.5s ease; }
+        .marquee-item { width: 80vw; max-width: 340px; flex-shrink: 0; display: flex; flex-direction: column; transition: transform 0.5s ease; }
         
         .autofit-frame { height: 200px; width: 100%; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.4); border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
         .autofit-frame img { max-width: 90%; max-height: 90%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); transition: transform 0.8s ease; }
         @media(min-width:768px){ .autofit-frame { height: 260px; } }
 
-        /* Tech Ring & Profile */
+        /* Tech Profile Container */
         .tech-ring-container { position: relative; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .tech-ring-container::before { content: ''; position: absolute; width: 150%; height: 150%; background: conic-gradient(from 0deg, transparent, var(--primary), transparent 30%, var(--primary), transparent); animation: rotate-border 4s linear infinite; }
         .inner-photo-shield { position: absolute; inset: 6px; background: var(--bg-deep); border-radius: 50%; z-index: 1; }
@@ -93,15 +93,14 @@
         #lightbox { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.95); z-index: 100; display: none; align-items: center; justify-content: center; cursor: zoom-out; backdrop-filter: blur(10px); padding: 1rem; }
         #lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 1rem; box-shadow: 0 0 50px rgba(14, 165, 233, 0.3); }
 
-        /* Floating Button */
         #floating-cv { transform: translateY(100px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
         #floating-cv.show { transform: translateY(0); }
 
-        /* Slideshow */
+        /* Slideshow Layout */
         .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out, transform 6s ease-out; object-fit: contain; width: 100%; height: 100%; padding: 0.5rem; }
         .slide.active { opacity: 1; transform: scale(1.02); }
 
-        /* Scanline AI effect */
+        /* Scanline Filter overlay */
         body::after {
             content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
@@ -118,74 +117,78 @@
 
     <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-sky-500 z-[100] transition-all duration-100" style="width: 0%"></div>
 
-    <!-- Floating CV Button (Mobile Only) -->
+    <!-- Floating CV Button (Mobile) -->
     <a id="floating-cv" href="assets/Sujay_S_CV.pdf" download class="fixed bottom-6 right-6 z-[70] ultra-glass p-4 rounded-full border-sky-500/50 shadow-2xl flex items-center justify-center group md:hidden">
         <i class="fas fa-file-pdf text-2xl text-sky-400"></i>
     </a>
 
-    <!-- Top Live Info Bar -->
-    <header class="fixed top-0 left-0 w-full z-[60] px-4 py-3 flex justify-between items-center pointer-events-none gap-2">
-        <div class="ultra-glass px-4 py-1.5 rounded-full border-white/10 pointer-events-auto flex items-center gap-2">
-            <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-            <span id="live-clock" class="mono text-[10px] font-bold tracking-widest text-sky-400">00:00:00</span>
-        </div>
-        <div class="ultra-glass px-4 py-1.5 rounded-full border-white/10 pointer-events-auto">
-            <span id="live-date" class="mono text-[9px] font-bold uppercase tracking-wider text-slate-400">LOADING_DATE</span>
-        </div>
-    </header>
+    <!-- Isolated Header Interface Block -->
+    <div class="fixed top-0 left-0 w-full z-[60] p-3 flex flex-col items-center gap-3 pointer-events-none">
+        <!-- Live System Info Bar -->
+        <header class="w-full max-w-7xl flex justify-between items-center gap-2 pointer-events-none">
+            <div class="ultra-glass px-4 py-1.5 rounded-full border-white/10 pointer-events-auto flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span id="live-clock" class="mono text-[10px] font-bold tracking-widest text-sky-400">00:00:00</span>
+            </div>
+            <div class="ultra-glass px-4 py-1.5 rounded-full border-white/10 pointer-events-auto">
+                <span id="live-date" class="mono text-[9px] font-bold uppercase tracking-wider text-slate-400">LOADING_DATE</span>
+            </div>
+        </header>
 
-    <!-- Main Navigation System -->
-    <nav class="fixed top-14 left-1/2 -translate-x-1/2 z-50 ultra-glass px-4 py-2.5 rounded-xl flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[9px] font-bold uppercase tracking-widest w-[90vw] md:w-auto max-w-4xl transition-all hover:border-sky-500/40">
-        <a href="#hero" class="hover:text-sky-400">Identity</a>
-        <a href="#achievements" class="hover:text-sky-400">Victories</a>
-        <a href="#internships" class="hover:text-sky-400">Internships</a>
-        <a href="#marquee-section" class="hover:text-sky-400">Certifications</a>
-        <a href="#nptel" class="hover:text-sky-400">NPTEL</a>
-        <a href="#contact" class="hover:text-sky-400">Connect</a>
-    </nav>
+        <!-- Main Navigation Component -->
+        <nav class="ultra-glass px-4 py-2.5 rounded-xl flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[9px] font-bold uppercase tracking-widest w-[95vw] sm:w-auto pointer-events-auto transition-all hover:border-sky-500/40">
+            <a href="#hero" class="hover:text-sky-400">Identity</a>
+            <a href="#achievements" class="hover:text-sky-400">Victories</a>
+            <a href="#internships" class="hover:text-sky-400">Internships</a>
+            <a href="#marquee-section" class="hover:text-sky-400">Certifications</a>
+            <a href="#nptel" class="hover:text-sky-400">NPTEL</a>
+            <a href="#contact" class="hover:text-sky-400">Connect</a>
+        </nav>
+    </div>
 
-    <!-- Hero Section -->
-    <section id="hero" class="min-h-screen flex items-center pt-28 pb-16 lg:py-24">
+    <!-- Hero Section Area -->
+    <section id="hero" class="min-h-screen flex items-center pt-32 pb-16 lg:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <!-- Left Side / Top on Mobile: Profile & Credentials -->
-            <div class="lg:col-span-5 flex flex-col items-center relative order-2 lg:order-1 mt-8 lg:mt-0">
-                <div class="relative w-full aspect-square max-w-[240px] sm:max-w-[300px] md:max-w-[360px] mb-28 lg:mb-0">
-                    <div class="tech-ring-container">
+            <!-- Left Layout Side: Cleaned Profile Space Stack -->
+            <div class="lg:col-span-5 flex flex-col items-center relative order-2 lg:order-1 mt-6 lg:mt-0 w-full">
+                <!-- Outer constraint layout framework to clean forced clipping -->
+                <div class="relative w-full aspect-square max-w-[240px] sm:max-w-[300px] md:max-w-[350px] flex items-center justify-center">
+                    <div class="tech-ring-container w-full h-full">
                         <div class="inner-photo-shield"></div>
                         <img src="assets/profile.png" alt="Sujay S" class="profile-img-stable">
                     </div>
 
-                    <!-- CGPA Badge -->
-                    <div class="absolute top-4 -right-4 sm:-right-8 ultra-glass px-4 py-2.5 rounded-xl rotate-12 border border-sky-500/30 shadow-2xl z-20">
-                        <p class="text-2xl sm:text-3xl font-black text-sky-400 leading-none">8.72</p>
-                        <p class="mono text-[7px] uppercase tracking-widest text-slate-400 mt-1">CGPA_SECURED</p>
+                    <!-- Absolute Floating CGPA secured Shield -->
+                    <div class="absolute -top-2 -right-2 sm:-right-6 ultra-glass px-3 py-1.5 rounded-xl rotate-12 border border-sky-500/30 shadow-2xl z-20">
+                        <p class="text-xl sm:text-2xl font-black text-sky-400 leading-none">8.72</p>
+                        <p class="mono text-[7px] uppercase tracking-widest text-slate-400 mt-0.5">CGPA_SECURED</p>
                     </div>
+                </div>
 
-                    <!-- Academic Card Wrap -->
-                    <div class="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[105%] sm:w-[115%] ultra-glass p-5 rounded-[2rem] border border-amber-500/30 shadow-xl text-center z-30 transition-all duration-500">
-                        <p class="mono text-[8px] font-black tracking-widest text-amber-500/80 uppercase mb-1">Academic Credentials</p>
-                        <h3 class="text-lg sm:text-xl md:text-2xl font-black italic uppercase leading-tight text-white">
-                            B.Tech Artificial Intelligence & Data Science
-                        </h3>
-                        <p class="text-sky-400 font-bold text-[9px] tracking-wider uppercase mt-1">
-                            with Minor Specialization in Business Intelligence<br>Pre-Final Year - Batch 2023-27
-                        </p>
-                        <div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-amber-500/40 to-transparent mx-auto my-2"></div>
-                        <p class="mono text-[10px] font-bold text-slate-200 uppercase tracking-wide">
-                            <i class="fas fa-landmark mr-1 text-amber-500"></i>Francis Xavier Engineering College, Tirunelveli
-                        </p>
-                    </div>
+                <!-- Academic Block Frame repositioned downward in normal structural sequence layout -->
+                <div class="w-full max-w-[290px] sm:max-w-[360px] md:max-w-[420px] ultra-glass p-5 rounded-[2rem] border border-amber-500/30 shadow-xl text-center z-30 mt-6 relative">
+                    <p class="mono text-[8px] font-black tracking-widest text-amber-500/80 uppercase mb-1">Academic Credentials</p>
+                    <h3 class="text-base sm:text-lg md:text-xl font-black italic uppercase leading-tight text-white">
+                        B.Tech Artificial Intelligence & Data Science
+                    </h3>
+                    <p class="text-sky-400 font-bold text-[9px] tracking-wider uppercase mt-1">
+                        with Minor Specialization in Business Intelligence<br>Pre-Final Year - Batch 2023-27
+                    </p>
+                    <div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-amber-500/40 to-transparent mx-auto my-2"></div>
+                    <p class="mono text-[10px] font-bold text-slate-200 uppercase tracking-wide">
+                        <i class="fas fa-landmark mr-1 text-amber-500"></i>Francis Xavier Engineering College, Tirunelveli
+                    </p>
                 </div>
             </div>
 
-            <!-- Right Side / Text Introduction -->
+            <!-- Right Text Info Side -->
             <div class="lg:col-span-7 space-y-6 order-1 lg:order-2 text-center lg:text-left pt-6 lg:pt-0">
                 <div class="mono text-sky-500 text-[10px] font-bold tracking-[0.4em] flex items-center justify-center lg:justify-start gap-3">
                     <span class="hidden lg:inline-block h-[1px] w-12 bg-sky-500"></span>
                     <span>AI ARCHITECT & DATA SCIENTIST</span>
                 </div>
-                <h1 class="text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-none">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-none">
                     SUJAY <span class="text-animate italic">S.</span>
                 </h1>
                 <p class="text-slate-400 text-lg sm:text-xl font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
@@ -333,7 +336,7 @@
         </div>
     </section>
 
-    <!-- Technical Validation / Marquee Slider Section -->
+    <!-- Technical Validation Section -->
     <section id="marquee-section" class="py-20 lg:py-28 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-8 reveal">
             <h2 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase italic">Technical <span class="text-sky-500">Validation.</span></h2>
@@ -446,7 +449,6 @@
     </footer>
 
     <script>
-        // Certification Data Mapping
         const certNames = {
             1: "Introduction to Data Studio - Google Analytics Academy",
             2: "Python 101 for Data Science - IBM",
@@ -485,10 +487,9 @@
 
         let marqueeHTML = "";
         for(let i=1; i<=18; i++) marqueeHTML += createItem(i);
-        for(let i=1; i<=8; i++) marqueeHTML += createItem(i); // Loop for seamless effect
+        for(let i=1; i<=8; i++) marqueeHTML += createItem(i); 
         marqueeInner.innerHTML = marqueeHTML;
 
-        // UI Time Helpers
         function updateTime() {
             const now = new Date();
             document.getElementById('live-clock').textContent = now.toLocaleTimeString('en-US', { hour12: false });
@@ -496,11 +497,11 @@
         }
         setInterval(updateTime, 1000); updateTime();
 
-        // Custom Magnetic Cursor Logic (Only active on screens > 768px)
+        // Magnetic Active Desktop Engine Control
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         
-        if(window.innerWidth > 768 && cursor && follower) {
+        if(window.innerWidth > 1024 && cursor && follower) {
             document.addEventListener('mousemove', (e) => {
                 gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
                 gsap.to(follower, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
@@ -515,7 +516,6 @@
                 });
             });
 
-            // Magnetic Nav Links Interaction
             document.querySelectorAll('nav a').forEach(link => {
                 link.addEventListener('mousemove', (e) => {
                     const rect = link.getBoundingClientRect();
@@ -529,7 +529,6 @@
             });
         }
 
-        // Scroll Logic
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('floating-cv');
             if(btn) {
@@ -543,7 +542,7 @@
             document.getElementById('scroll-progress').style.width = scrolled + "%";
         });
 
-        // Neural-Network Background
+        // Background Particles
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -580,7 +579,6 @@
         }
         initCanvas(); drawParticles(); window.onresize = initCanvas;
 
-        // Slideshow Controller
         document.querySelectorAll('.slideshow-container').forEach(container => {
             const slides = container.querySelectorAll('.slide'); let idx = 0;
             if (slides.length > 1) setInterval(() => { 
@@ -596,7 +594,6 @@
             lb.style.display = 'flex'; 
         }
 
-        // GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
         gsap.from(".hero-reveal > *", { y: 30, opacity: 0, stagger: 0.12, duration: 1, ease: "power4.out" });
         gsap.utils.toArray(".reveal").forEach(el => { 
