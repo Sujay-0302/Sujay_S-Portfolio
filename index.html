@@ -106,7 +106,17 @@
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
             z-index: 99; background-size: 100% 4px, 3px 100%; pointer-events: none; opacity: 0.4;
         }
-    </style>
+    
+@keyframes ticker {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+.ticker-track{
+    display:inline-block;
+    animation:ticker 35s linear infinite; will-change: transform;
+}
+
+</style>
 </head>
 <body class="selection:bg-sky-500/30">
 
@@ -139,12 +149,24 @@
         <nav class="ultra-glass px-4 py-2.5 rounded-xl flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[9px] font-bold uppercase tracking-widest w-[95vw] sm:w-auto pointer-events-auto transition-all hover:border-sky-500/40">
             <a href="#hero" class="hover:text-sky-400">Identity</a>
             <a href="#achievements" class="hover:text-sky-400">Victories</a>
+            <a href="#department-award" class="hover:text-sky-400">Awards</a>
             <a href="#internships" class="hover:text-sky-400">Internships</a>
             <a href="#marquee-section" class="hover:text-sky-400">Certifications</a>
             <a href="#nptel" class="hover:text-sky-400">NPTEL</a>
             <a href="#contact" class="hover:text-sky-400">Connect</a>
         </nav>
     </div>
+
+    <div class="w-full overflow-hidden bg-sky-500/10 border-y border-sky-500/30 py-2 mt-32">
+        <div class="ticker-track whitespace-nowrap">
+            <span class="mx-10 text-sky-400 font-bold uppercase tracking-widest text-[10px]">🔴 Latest News :</span>
+            <span class="mx-10 text-white font-semibold">Infosys Virtual Internship 7.O - Shortlisted</span>
+            <span class="mx-10 text-white font-semibold">NPTEL DISCIPLINE STARS - Jan-Apr 2026</span>
+            <span class="mx-10 text-white font-semibold">International Award - IEEE - Yesist'12 (2024) - Honorable Mention - Tunisia, North Africa</span>
+            <span class="mx-10 text-white font-semibold">---</span>
+        </div>
+    </div>
+
 
     <!-- Hero Section Area -->
     <section id="hero" class="min-h-screen flex items-center pt-32 pb-16 lg:py-24">
@@ -202,7 +224,23 @@
                         Download CV
                     </a>
                 </div>
-            </div>
+            
+<div class="reveal group">
+<div class="ultra-glass p-5 rounded-[2rem] border-white/5 group-hover:border-sky-500/40 transition-all duration-500 h-full flex flex-col">
+<div class="aspect-[1/1.3] w-full bg-slate-950/40 rounded-xl overflow-hidden mb-5 border border-white/10 relative">
+<div class="slideshow-container h-full w-full relative">
+<img src="assets/infosys-offer-mail.png" class="slide active">
+<img src="assets/infosys-virtual-internship.png" class="slide">
+</div>
+</div>
+<div class="mt-auto">
+<p class="mono text-sky-500 text-[10px] font-bold tracking-widest uppercase">Infosys Springboard</p>
+<h4 class="text-xl font-black uppercase italic mt-1">Virtual Internship</h4>
+</div>
+</div>
+</div>
+
+</div>
         </div>
     </section>
 
@@ -279,7 +317,7 @@
                     </div>
                     <div class="mt-auto pt-2">
                         <h4 class="text-xl font-bold italic uppercase">Srishti Hackathon</h4>
-                        <p class="mono text-[10px] text-sky-500 font-bold uppercase tracking-wider">Winner (First Prize)</p>
+                        <p class="mono text-[10px] text-sky-500 font-bold uppercase tracking-wider">Winner (First Prize) | Internship Offer (6 Weeks)</p>
                     </div>
                 </div>
 
@@ -287,7 +325,8 @@
         </div>
     </section>
 
-    <!-- Industrial Experience Section -->
+    
+<!-- Industrial Experience Section -->
     <section id="internships" class="py-20 lg:py-28 bg-sky-500/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase italic text-white mb-12 reveal">Industrial <span class="text-sky-500">Experience.</span></h2>
@@ -363,7 +402,7 @@
                     </div>
                     <div class="mt-auto">
                         <p class="mono text-sky-500 text-[10px] font-bold tracking-wider uppercase">Elite + Silver | Score: 76%</p>
-                        <h4 class="text-lg font-bold uppercase mt-1 italic leading-tight text-white">Joy Of Computing Using Python</h4>
+                        <h4 class="text-lg font-bold uppercase mt-1 italic leading-tight text-white">The Joy Of Computing Using Python</h4>
                     </div>
                 </div>
 
@@ -385,7 +424,7 @@
                     </div>
                     <div class="mt-auto">
                         <p class="mono text-sky-500 text-[10px] font-bold tracking-wider uppercase">Elite + Silver | Score: 78%</p>
-                        <h4 class="text-lg font-bold uppercase mt-1 italic leading-tight text-white">Industry 4.0 & IIoT</h4>
+                        <h4 class="text-lg font-bold uppercase mt-1 italic leading-tight text-white">Introduction to Industry 4.0 and Industrial Internet of Things</h4>
                     </div>
                 </div>
 
@@ -425,6 +464,44 @@
             </div>
         </div>
     </section>
+<section id="department-award" class="py-24 lg:py-32">
+<div class="max-w-7xl mx-auto px-4 sm:px-6">
+<div class="text-center mb-14 reveal">
+<span class="tag-neon-gold px-4 py-2 rounded-full text-[10px] font-black uppercase">Recognition & Excellence</span>
+<h2 class="mt-6 text-5xl md:text-6xl font-black uppercase italic text-amber-500">Department Achievement Award</h2>
+<p class="text-slate-400 mt-4 max-w-3xl mx-auto">
+Honored by the Department of Artificial Intelligence and Data Science for academic excellence,
+innovation activities, project contributions, technical leadership and competition achievements.
+</p>
+</div>
+
+<div class="ultra-glass rounded-[2rem] p-6 md:p-10 border border-amber-500/20 reveal">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+<div class="group">
+<div onclick="openLightbox('assets/department-medal.jpg')" class="cursor-zoom-in h-[340px] bg-slate-950/40 rounded-2xl border border-white/10 flex items-center justify-center p-4 overflow-hidden hover:border-amber-500/50 transition-all duration-500">
+<img src="assets/department-medal.jpg" class="max-w-full max-h-full object-contain transition duration-700 group-hover:scale-105">
+</div>
+</div>
+
+<div class="group">
+<div onclick="openLightbox('assets/department-stage.jpg')" class="cursor-zoom-in h-[340px] bg-slate-950/40 rounded-2xl border border-white/10 flex items-center justify-center p-4 overflow-hidden hover:border-sky-500/50 transition-all duration-500">
+<img src="assets/department-stage.jpg" class="max-w-full max-h-full object-contain transition duration-700 group-hover:scale-105">
+</div>
+</div>
+
+<div class="group">
+<div onclick="openLightbox('assets/department-poster.jpg')" class="cursor-zoom-in h-[340px] bg-slate-950/40 rounded-2xl border border-white/10 flex items-center justify-center p-4 overflow-hidden hover:border-purple-500/50 transition-all duration-500">
+<img src="assets/department-poster.jpg" class="max-w-full max-h-full object-contain transition duration-700 group-hover:scale-105">
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+
 
     <!-- Connect / Contact Section -->
     <section id="contact" class="py-20 lg:py-28">
