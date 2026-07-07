@@ -11,16 +11,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght=300;400;600;900&family=JetBrains+Mono:wght=400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght=300;400;600;700;800;900&family=JetBrains+Mono:wght=400;700&display=swap');
         
         :root { 
             --primary: #0ea5e9; 
             --secondary: #6366f1; 
-            --accent: #eab308; 
-            --bg-deep: #020617; 
+            --accent: #f43f5e; 
+            --gold: #f59e0b;
+            --bg-deep: #030014; 
         }
 
-        /* Base Styles */
         body { 
             font-family: 'Outfit', sans-serif;
             background-color: var(--bg-deep);
@@ -29,96 +29,93 @@
             line-height: 1.6;
             width: 100%;
             max-width: 100%;
+            /* High-fidelity mesh background gradient */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(244, 63, 94, 0.05) 0%, transparent 50%);
+            background-attachment: fixed;
         } 
         
-        img { max-width: 100%; height: auto; }
+        img { max-width: 100%; height: auto; object-fit: contain; }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Custom Cursor - Desktop Only */
+        /* Smooth Custom Cursor - Desktop Only */
         @media (min-width: 1025px) {
             #cursor { position: fixed; width: 8px; height: 8px; background: white; border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; }
-            #cursor-follower { position: fixed; width: 40px; height: 40px; border: 1px solid var(--primary); border-radius: 50%; pointer-events: none; z-index: 9998; transition: transform 0.15s ease-out; }
+            #cursor-follower { position: fixed; width: 44px; height: 44px; border: 2px solid var(--primary); border-radius: 50%; pointer-events: none; z-index: 9998; transition: transform 0.12s cubic-bezier(0.25, 1, 0.5, 1); }
         }
         @media (max-width: 1024px) {
             #cursor, #cursor-follower { display: none !important; }
         }
 
-        /* Glassmorphism Matrix */
+        /* Premium Glassmorphic Cards with Colorful Inner Shadows */
         .ultra-glass { 
-            background: rgba(15, 23, 42, 0.65); 
-            backdrop-filter: blur(24px) saturate(180%); 
+            background: rgba(10, 6, 32, 0.7); 
+            backdrop-filter: blur(24px) saturate(200%); 
             border: 1px solid rgba(255, 255, 255, 0.08); 
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .ultra-glass:hover {
+            background: rgba(15, 8, 42, 0.85);
+            border-color: rgba(14, 165, 233, 0.4);
+            box-shadow: 0 30px 60px rgba(14, 165, 233, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+            transform: translateY(-4px);
         }
         
         /* Interactive Nav Links */
         nav a { position: relative; transition: all 0.3s ease; }
         nav a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0; width: 0%; height: 2px;
-            background: var(--primary); transition: width 0.3s ease;
+            content: ''; position: absolute; bottom: -4px; left: 50%; width: 0%; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary)); transition: all 0.3s ease; transform: translateX(-50%);
         }
         nav a:hover::after { width: 100%; }
 
         /* Neon Tags */
-        .tag-neon-blue { background: rgba(14, 165, 233, 0.12); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.4); box-shadow: 0 0 20px rgba(14, 165, 233, 0.2); }
-        .tag-neon-gold { background: rgba(234, 179, 8, 0.12); color: #fbbf24; border: 1px solid rgba(234, 179, 8, 0.4); box-shadow: 0 0 20px rgba(234, 179, 8, 0.2); }
-        .tag-neon-purple { background: rgba(168, 85, 247, 0.12); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); box-shadow: 0 0 20px rgba(168, 85, 247, 0.2); }
-        .tag-neon-green { background: rgba(34, 197, 94, 0.12); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
+        .tag-neon-blue { background: rgba(14, 165, 233, 0.15); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.4); text-shadow: 0 0 10px rgba(14, 165, 233, 0.5); }
+        .tag-neon-gold { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); text-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+        .tag-neon-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); text-shadow: 0 0 10px rgba(168, 85, 247, 0.5); }
+        .tag-neon-green { background: rgba(34, 197, 94, 0.15); color: #4ade80; border: 1px solid rgba(34, 197, 94, 0.4); text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
 
-        .reveal.group:hover { transform: translateY(-6px); }
-
-        /* Marquee Structural Logic */
+        /* Marquee Layout Auto-centering Engine */
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { display: flex; width: max-content; animation: marquee 45s linear infinite; }
+        .animate-marquee { display: flex; width: max-content; animation: marquee 40s linear infinite; }
         .marquee-container:hover .animate-marquee { animation-play-state: paused; }
-        .marquee-item { width: 80vw; max-width: 320px; flex-shrink: 0; display: flex; flex-direction: column; transition: transform 0.5s ease; }
+        .marquee-item { width: 290px; flex-shrink: 0; display: flex; flex-direction: column; }
         
-        .autofit-frame { height: 200px; width: 100%; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.4); border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.1); }
-        .autofit-frame img { max-width: 95%; max-height: 95%; object-fit: contain; filter: drop-shadow(0 10px 20px rgba(0,0,0,0.4)); transition: transform 0.8s ease; }
-        @media(min-width:768px){ .autofit-frame { height: 240px; } }
+        .autofit-frame { aspect-ratio: 4/3; width: 100%; display: flex; align-items: center; justify-content: center; background: rgba(5, 2, 18, 0.6); border-radius: 1.5rem; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.06); }
+        .autofit-frame img { max-width: 90%; max-height: 90%; object-fit: contain; transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1); }
+        .marquee-item:hover .autofit-frame img { transform: scale(1.05); }
 
-        /* Tech Profile Container */
+        /* Neon Rotating Profile Ring */
         .tech-ring-container { position: relative; width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-        .tech-ring-container::before { content: ''; position: absolute; width: 150%; height: 150%; background: conic-gradient(from 0deg, transparent, var(--primary), transparent 30%, var(--primary), transparent); animation: rotate-border 4s linear infinite; }
-        .inner-photo-shield { position: absolute; inset: 6px; background: var(--bg-deep); border-radius: 50%; z-index: 1; }
-        .profile-img-stable { position: relative; z-index: 2; width: 94%; height: 94%; object-fit: cover; border-radius: 50%; transition: filter 0.5s ease; }
+        .tech-ring-container::before { content: ''; position: absolute; width: 160%; height: 160%; background: conic-gradient(from 0deg, transparent, var(--primary), transparent 40%, var(--secondary), transparent); animation: rotate-border 4s linear infinite; }
+        .inner-photo-shield { position: absolute; inset: 5px; background: var(--bg-deep); border-radius: 50%; z-index: 1; }
+        .profile-img-stable { position: relative; z-index: 2; width: 96%; height: 96%; object-fit: cover; border-radius: 50%; }
         
         @keyframes rotate-border { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .text-animate { background: linear-gradient(to right, #fff 20%, #0ea5e9 40%, #6366f1 60%, #fff 80%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; animation: shine 5s linear infinite; }
+        
+        /* Shimmering Linear Text Effects */
+        .text-animate { background: linear-gradient(to right, #fff 20%, #0ea5e9 40%, #6366f1 60%, #f43f5e 80%, #fff 100%); background-size: 200% auto; color: transparent; -webkit-background-clip: text; animation: shine 4s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
         
-        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.35; }
-        #lightbox { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.96); z-index: 100; display: none; align-items: center; justify-content: center; cursor: zoom-out; backdrop-filter: blur(12px); padding: 1rem; }
-        #lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 1rem; box-shadow: 0 0 60px rgba(14, 165, 233, 0.25); }
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.25; pointer-events: none; }
+        #lightbox { position: fixed; inset: 0; background: rgba(2, 1, 12, 0.96); z-index: 100; display: none; align-items: center; justify-content: center; cursor: zoom-out; backdrop-filter: blur(20px); padding: 1.5rem; }
+        #lightbox img { max-width: 100%; max-height: 85vh; object-fit: contain; border-radius: 1rem; box-shadow: 0 0 60px rgba(14, 165, 233, 0.3); }
 
-        #floating-cv { transform: translateY(100px); transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        #floating-cv { transform: translateY(120px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         #floating-cv.show { transform: translateY(0); }
 
-        /* Slideshow Layout */
-        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.2s ease-in-out, transform 1.2s ease-out; object-fit: contain; width: 100%; height: 100%; padding: 0.25rem; }
+        /* Cinematic Presentation Slides */
+        .slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s ease-in-out, transform 1s ease-in-out; object-fit: contain; width: 100%; height: 100%; padding: 0.5rem; }
         .slide.active { opacity: 1; transform: scale(1); }
 
-        /* Dynamic Autofit Frame Styles */
-        .cert-autofit-wrapper { width: 100%; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.4); border-radius: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.08); overflow: hidden; padding: 0.5rem; transition: border-color 0.4s ease; }
-        .cert-autofit-wrapper img, .cert-autofit-wrapper .slideshow-container { width: 100%; height: 100%; object-fit: contain; }
-        .ultra-glass:hover .cert-autofit-wrapper { border-color: rgba(14, 165, 233, 0.4); }
+        .cert-autofit-wrapper { aspect-ratio: 4/3; width: 100%; display: flex; align-items: center; justify-content: center; background: rgba(5, 2, 18, 0.5); border-radius: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.06); overflow: hidden; position: relative; }
 
-        /* Scanline Filter overlay */
-        body::after {
-            content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.04) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.015), rgba(0, 255, 0, 0.008), rgba(0, 0, 255, 0.015));
-            z-index: 99; background-size: 100% 4px, 3px 100%; pointer-events: none; opacity: 0.4;
-        }
-    
-        @keyframes ticker {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .ticker-track{
-            display:inline-block;
-            animation:ticker 35s linear infinite; will-change: transform;
-        }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-33.33%); } }
+        .ticker-track { display: flex; width: max-content; animation: ticker 30s linear infinite; }
+        .ticker-track:hover { animation-play-state: paused; }
     </style>
 </head>
 <body class="selection:bg-sky-500/30">
@@ -128,108 +125,121 @@
     <canvas id="canvas-bg"></canvas>
     <div id="lightbox" onclick="this.style.display='none'"><img src="" alt="Zoomed View"></div>
 
-    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-sky-500 z-[100] transition-all duration-100" style="width: 0%"></div>
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sky-500 via-indigo-500 to-rose-500 z-[100] transition-all duration-100" style="width: 0%"></div>
 
-    <a id="floating-cv" href="assets/Sujay_S_CV.pdf" download class="fixed bottom-6 right-6 z-[70] ultra-glass p-4 rounded-full border-sky-500/50 shadow-2xl flex items-center justify-center group md:hidden">
-        <i class="fas fa-file-pdf text-2xl text-sky-400"></i>
+    <a id="floating-cv" href="assets/Sujay_S_CV.pdf" download class="fixed bottom-6 right-6 z-[70] ultra-glass p-4 rounded-full border-sky-500/40 shadow-2xl flex items-center justify-center lg:hidden">
+        <i class="fas fa-file-pdf text-xl text-sky-400"></i>
     </a>
 
-    <div class="fixed top-0 left-0 w-full z-[60] p-2 md:p-3 flex flex-col items-center gap-2 md:gap-3 pointer-events-none">
-        <header class="w-full max-w-7xl flex justify-between items-center gap-2 pointer-events-none px-2">
-            <div class="ultra-glass px-3 py-1 md:px-4 md:py-1.5 rounded-full border-white/10 pointer-events-auto flex items-center gap-2">
-                <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-500 animate-pulse"></div>
-                <span id="live-clock" class="mono text-[9px] md:text-[10px] font-bold tracking-widest text-sky-400">00:00:00</span>
+    <div class="fixed top-0 left-0 w-full z-[60] p-3 md:p-4 flex flex-col items-center gap-3 pointer-events-none">
+        <header class="w-full max-w-7xl flex justify-between items-center pointer-events-none px-2">
+            <div class="ultra-glass px-3 py-1.5 rounded-full border-white/5 pointer-events-auto flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                <span id="live-clock" class="mono text-[10px] font-bold tracking-widest text-sky-400">00:00:00</span>
             </div>
-            <div class="ultra-glass px-3 py-1 md:px-4 md:py-1.5 rounded-full border-white/10 pointer-events-auto">
-                <span id="live-date" class="mono text-[8px] md:text-[9px] font-bold uppercase tracking-wider text-slate-400">LOADING_DATE</span>
+            <div class="ultra-glass px-3 py-1.5 rounded-full border-white/5 pointer-events-auto">
+                <span id="live-date" class="mono text-[9px] font-bold uppercase tracking-wider text-slate-400">LOADING_DATE</span>
             </div>
         </header>
 
-        <nav class="ultra-glass px-3 py-2 md:px-4 md:py-2.5 rounded-xl flex flex-wrap justify-center items-center gap-x-3 gap-y-1.5 text-[8px] md:text-[9px] font-bold uppercase tracking-widest w-[95vw] sm:w-auto pointer-events-auto transition-all hover:border-sky-500/40">
+        <nav class="ultra-glass px-4 py-2.5 rounded-2xl flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-[9px] font-bold uppercase tracking-widest max-w-[95vw] sm:max-w-max pointer-events-auto">
             <a href="#hero" class="hover:text-sky-400">Identity</a>
             <a href="#stats-dashboard" class="hover:text-sky-400">Metrics</a>
             <a href="#achievements" class="hover:text-sky-400">Victories</a>
-            <a href="#department-award" class="hover:text-sky-400">Awards</a>
             <a href="#internships" class="hover:text-sky-400">Internships</a>
             <a href="#marquee-section" class="hover:text-sky-400">Certifications</a>
             <a href="#nptel" class="hover:text-sky-400">NPTEL</a>
+            <a href="#department-award" class="hover:text-sky-400">Awards</a>
             <a href="#contact" class="hover:text-sky-400">Connect</a>
         </nav>
     </div>
 
-    <div class="w-full overflow-hidden bg-sky-500/10 border-y border-sky-500/30 py-2 mt-28 md:mt-32">
-        <div class="ticker-track whitespace-nowrap">
-            <span class="mx-6 md:mx-10 text-sky-400 font-bold uppercase tracking-widest text-[9px] md:text-[10px]">🔴 Latest News :</span>
-            <span class="mx-6 md:mx-10 text-white font-semibold text-xs md:text-sm">Infosys Virtual Internship 7.O - Shortlisted - Batch-3</span>
-            <span class="mx-6 md:mx-10 text-white font-semibold text-xs md:text-sm">NPTEL DISCIPLINE STARS - Jan-Apr 2026</span>
-            <span class="mx-6 md:mx-10 text-white font-semibold text-xs md:text-sm">VISAI 2025 - 1st Prize</span>
-            <span class="mx-6 md:mx-10 text-white font-semibold text-xs md:text-sm">International Award - IEEE - Yesist'12 (2024) - Honorable Mention - Tunisia, North Africa</span>
-            <span class="mx-6 md:mx-10 text-white font-semibold text-xs md:text-sm">---</span>
+    <div class="w-full overflow-hidden bg-gradient-to-r from-sky-950/40 via-purple-950/40 to-indigo-950/40 backdrop-blur-md border-y border-sky-500/20 py-3 mt-32 md:mt-36">
+        <div class="ticker-track">
+            <div class="flex items-center whitespace-nowrap min-w-full">
+                <span class="mx-6 text-rose-500 font-extrabold tracking-widest text-[10px] uppercase">🔴 FLASH UPDATE //</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">Infosys Virtual Internship 7.O Shortlisted (Batch-3)</span>
+                <span class="text-sky-400 font-bold mx-2">•</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">NPTEL Discipline Stars Recognition (Jan-Apr 2026)</span>
+                <span class="text-purple-400 font-bold mx-2">•</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">VISAI 2025 Global Project Competition — 1st Prize Winner</span>
+                <span class="text-amber-400 font-bold mx-2">•</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">IEEE YESIST'12 International Finalist (Tunisia, North Africa) — Honorable Mention</span>
+            </div>
+            <div class="flex items-center whitespace-nowrap min-w-full" aria-hidden="true">
+                <span class="mx-6 text-rose-500 font-extrabold tracking-widest text-[10px] uppercase">🔴 FLASH UPDATE //</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">Infosys Virtual Internship 7.O Shortlisted (Batch-3)</span>
+                <span class="text-sky-400 font-bold mx-2">•</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">NPTEL Discipline Stars Recognition (Jan-Apr 2026)</span>
+                <span class="text-purple-400 font-bold mx-2">•</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">VISAI 2025 Global Project Competition — 1st Prize Winner</span>
+                <span class="text-amber-400 font-bold mx-2">•</span>
+                <span class="mx-6 text-slate-200 font-semibold text-xs md:text-sm">IEEE YESIST'12 International Finalist (Tunisia, North Africa) — Honorable Mention</span>
+            </div>
         </div>
     </div>
 
-    <section id="hero" class="min-h-screen flex items-center pt-12 pb-12 lg:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+    <section id="hero" class="min-h-[85vh] flex items-center py-12 md:py-20 lg:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
-            <div class="lg:col-span-5 flex flex-col items-center relative order-2 lg:order-1 mt-4 lg:mt-0 w-full">
-                <div class="relative w-full aspect-square max-w-[220px] sm:max-w-[280px] md:max-w-[320px] flex items-center justify-center">
+            <div class="lg:col-span-5 flex flex-col items-center order-1 lg:order-1 w-full relative">
+                <div class="relative w-full aspect-square max-w-[240px] sm:max-w-[280px] md:max-w-[340px] flex items-center justify-center" data-tilt data-tilt-max="12" data-tilt-glare data-tilt-max-glare="0.2">
                     <div class="tech-ring-container w-full h-full">
                         <div class="inner-photo-shield"></div>
                         <img src="assets/profile.png" alt="Sujay S" class="profile-img-stable">
                     </div>
-
-                    <div class="absolute -top-2 -right-2 sm:-right-4 ultra-glass px-2.5 py-1 rounded-xl rotate-12 border border-sky-500/30 shadow-2xl z-20">
-                        <p class="text-lg sm:text-2xl font-black text-sky-400 leading-none">8.72</p>
-                        <p class="mono text-[6px] uppercase tracking-widest text-slate-400 mt-0.5">CGPA_SECURED</p>
+                    <div class="absolute -top-3 -right-3 ultra-glass px-3 py-1.5 rounded-2xl rotate-12 border border-sky-500/40 shadow-2xl z-20">
+                        <p class="text-2xl font-black text-sky-400 leading-none">8.72</p>
+                        <p class="mono text-[6px] uppercase tracking-widest text-slate-400 mt-1 font-bold">CGPA_SECURED</p>
                     </div>
                 </div>
 
-                <div class="w-full max-w-[280px] sm:max-w-[340px] md:max-w-[400px] ultra-glass p-4 md:p-5 rounded-[2rem] border border-amber-500/30 shadow-xl text-center z-30 mt-6 relative">
-                    <p class="mono text-[8px] font-black tracking-widest text-amber-500/80 uppercase mb-1">Academic Credentials</p>
-                    <h3 class="text-sm sm:text-base md:text-lg font-black italic uppercase leading-tight text-white">
+                <div class="w-full max-w-[320px] sm:max-w-[380px] md:max-w-[420px] ultra-glass p-5 md:p-6 rounded-[2rem] border border-amber-500/20 shadow-xl text-center z-30 mt-8">
+                    <p class="mono text-[8px] font-black tracking-widest text-amber-500 uppercase mb-1.5">Academic Credentials</p>
+                    <h3 class="text-base md:text-lg font-black italic uppercase leading-tight text-white tracking-wide">
                         B.Tech Artificial Intelligence & Data Science
                     </h3>
-                    <p class="text-sky-400 font-bold text-[8px] md:text-[9px] tracking-wider uppercase mt-1">
-                        with Minor Specialization in Business Intelligence<br>Pre-Final Year - Batch 2023-27
+                    <p class="text-sky-400 font-bold text-[9px] tracking-wider uppercase mt-1.5 leading-relaxed">
+                        with Minor Specialization in Business Intelligence<br><span class="text-slate-400 text-[8px]">Final Year — Batch 2023-27</span>
                     </p>
-                    <div class="h-[1px] w-12 bg-gradient-to-r from-transparent via-amber-500/40 to-transparent mx-auto my-2"></div>
-                    <p class="mono text-[9px] md:text-[10px] font-bold text-slate-200 uppercase tracking-wide">
-                        <i class="fas fa-landmark mr-1 text-amber-500"></i>Francis Xavier Engineering College, Tirunelveli
+                    <div class="h-[1px] w-16 bg-gradient-to-r from-transparent via-amber-500/30 to-transparent mx-auto my-3"></div>
+                    <p class="mono text-[10px] font-semibold text-slate-300 uppercase tracking-wide">
+                        <i class="fas fa-landmark mr-1.5 text-amber-500"></i>Francis Xavier Engineering College
                     </p>
                 </div>
             </div>
 
-            <div class="lg:col-span-7 space-y-4 md:space-y-6 order-1 lg:order-2 text-center lg:text-left pt-4 lg:pt-0">
-                <div class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-[0.4em] flex items-center justify-center lg:justify-start gap-3">
-                    <span class="hidden lg:inline-block h-[1px] w-12 bg-sky-500"></span>
+            <div class="lg:col-span-7 space-y-6 md:space-y-8 order-2 lg:order-2 text-center lg:text-left">
+                <div class="mono text-sky-400 text-[10px] font-bold tracking-[0.4em] flex items-center justify-center lg:justify-start gap-3">
+                    <span class="hidden lg:inline-block h-[1px] w-10 bg-sky-500"></span>
                     <span>AI ARCHITECT & DATA SCIENTIST</span>
                 </div>
-                <h1 class="text-3xl sm:text-5xl md:text-6xl xl:text-8xl font-black tracking-tighter leading-none">
+                <h1 class="text-4xl sm:text-6xl md:text-7xl xl:text-8xl font-black tracking-tighter leading-none">
                     SUJAY <span class="text-animate italic">S.</span>
                 </h1>
-                <p class="text-slate-400 text-base sm:text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                    Engineering <span class="text-white font-semibold">autonomous intelligence</span> for high-stakes <span class="text-sky-400">industrial environments</span>.
+                <p class="text-slate-400 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto lg:mx-0">
+                    Engineering <span class="text-white font-medium">autonomous intelligence systems</span> built for deployment across high-stakes industrial environments.
                 </p>
                 
-                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 pt-2">
-                    <a href="#contact" class="px-6 py-3.5 md:px-8 md:py-4 bg-sky-500 rounded-xl font-bold tracking-widest text-[9px] md:text-[10px] uppercase hover:shadow-[0_0_30px_rgba(14,165,233,0.4)] transition-all">Establish Connection</a>
-                    <a href="assets/Sujay_S_CV.pdf" download class="ultra-glass px-6 py-3.5 md:px-8 md:py-4 rounded-xl font-bold tracking-widest text-[9px] md:text-[10px] uppercase border border-white/10 hover:border-sky-500/50 hover:bg-white/5 transition-all flex items-center justify-center gap-2 group">
-                        <i class="fas fa-file-pdf text-sky-400 group-hover:animate-bounce"></i>
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#contact" class="px-7 py-4 bg-gradient-to-r from-sky-500 via-indigo-600 to-purple-600 rounded-xl font-bold tracking-widest text-[10px] uppercase shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:shadow-[0_0_40px_rgba(14,165,233,0.5)] transition-all duration-300">Establish Connection</a>
+                    <a href="assets/Sujay_S_CV.pdf" download class="ultra-glass px-7 py-4 rounded-xl font-bold tracking-widest text-[10px] uppercase border border-white/5 hover:bg-white/5 transition-all flex items-center justify-center gap-2 group">
+                        <i class="fas fa-file-pdf text-sky-400"></i>
                         Download CV
                     </a>
                 </div>
             
-                <div class="reveal group w-full max-w-md mx-auto lg:mx-0">
-                    <div class="ultra-glass p-4 rounded-[2rem] border-white/5 group-hover:border-sky-500/40 transition-all duration-500 flex flex-col">
-                        <div class="cert-autofit-wrapper aspect-[4/3] mb-4 relative cursor-zoom-in" onclick="openLightbox('assets/infosys-virtual-internship.png')">
+                <div class="reveal group w-full max-w-md mx-auto lg:mx-0 pt-4">
+                    <div class="ultra-glass p-4 rounded-[2rem] flex flex-col border-white/5 hover:border-sky-400/40">
+                        <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/infosys-virtual-internship.png')">
                             <div class="slideshow-container w-full h-full relative">
                                 <img src="assets/infosys-offer-mail.png" class="slide active !object-top">
                                 <img src="assets/infosys-virtual-internship.png" class="slide !object-top">
                             </div>
                         </div>
-                        <div>
-                            <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase">Infosys Springboard</p>
-                            <h4 class="text-lg md:text-xl font-black uppercase italic mt-0.5">Virtual Internship</h4>
+                        <div class="px-1">
+                            <p class="mono text-sky-400 text-[10px] font-bold tracking-widest uppercase">Infosys Springboard</p>
+                            <h4 class="text-lg font-black uppercase italic mt-0.5 text-white">Virtual Internship 7.0</h4>
                         </div>
                     </div>
                 </div>
@@ -238,111 +248,115 @@
         </div>
     </section>
 
-    <section id="stats-dashboard" class="py-10 bg-slate-950/40 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
+    <section id="stats-dashboard" class="py-12 bg-slate-950/60 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 text-center">
                 
-                <div class="ultra-glass p-4 md:p-6 rounded-[2rem] border-white/5 hover:border-sky-500/30 group">
-                    <p class="text-2xl md:text-5xl font-black text-sky-400 tracking-tight leading-none">
+                <div class="ultra-glass p-5 md:p-6 rounded-[2rem]">
+                    <p class="text-3xl md:text-5xl font-black text-sky-400 tracking-tight leading-none">
                         <span class="count-engine" data-target="2">0</span>+
                     </p>
-                    <p class="mono text-[8px] md:text-[9px] uppercase tracking-widest text-slate-400 mt-2 font-bold group-hover:text-white transition-colors">International Awards</p>
+                    <p class="mono text-[9px] uppercase tracking-widest text-slate-400 mt-2.5 font-bold">International Awards</p>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-6 rounded-[2rem] border-white/5 hover:border-amber-500/30 group">
-                    <p class="text-2xl md:text-5xl font-black text-amber-400 tracking-tight leading-none">
+                <div class="ultra-glass p-5 md:p-6 rounded-[2rem]">
+                    <p class="text-3xl md:text-5xl font-black text-amber-400 tracking-tight leading-none">
                         <span class="count-engine" data-target="6">0</span>+
                     </p>
-                    <p class="mono text-[8px] md:text-[9px] uppercase tracking-widest text-slate-400 mt-2 font-bold group-hover:text-white transition-colors">NPTEL Elite Badges</p>
+                    <p class="mono text-[9px] uppercase tracking-widest text-slate-400 mt-2.5 font-bold">NPTEL Elite Badges</p>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-6 rounded-[2rem] border-white/5 hover:border-purple-500/30 group">
-                    <p class="text-2xl md:text-5xl font-black text-purple-400 tracking-tight leading-none">
+                <div class="ultra-glass p-5 md:p-6 rounded-[2rem]">
+                    <p class="text-3xl md:text-5xl font-black text-purple-400 tracking-tight leading-none">
                         <span class="count-engine" data-target="18">0</span>+
                     </p>
-                    <p class="mono text-[8px] md:text-[9px] uppercase tracking-widest text-slate-400 mt-2 font-bold group-hover:text-white transition-colors">Global Validations</p>
+                    <p class="mono text-[9px] uppercase tracking-widest text-slate-400 mt-2.5 font-bold">Global Validations</p>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-6 rounded-[2rem] border-white/5 hover:border-green-500/30 group">
-                    <p class="text-2xl md:text-5xl font-black text-green-400 tracking-tight leading-none">
+                <div class="ultra-glass p-5 md:p-6 rounded-[2rem]">
+                    <p class="text-3xl md:text-5xl font-black text-green-400 tracking-tight leading-none">
                         <span class="count-engine" data-target="3">0</span>+
                     </p>
-                    <p class="mono text-[8px] md:text-[9px] uppercase tracking-widest text-slate-400 mt-2 font-bold group-hover:text-white transition-colors">Industrial Internships</p>
+                    <p class="mono text-[9px] uppercase tracking-widest text-slate-400 mt-2.5 font-bold">Industrial Internships</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <section id="achievements" class="py-16 lg:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic text-sky-500 mb-8 md:mb-12 reveal">Global Victories.</h2>
+    <section id="achievements" class="py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
+            <div class="mb-10 md:mb-14 text-center lg:text-left">
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic text-sky-400">Global Victories.</h2>
+                <p class="mono text-[9px] text-slate-500 tracking-widest uppercase mt-1">COMPETITIONS & CONFERENCES</p>
+            </div>
+            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-sky-500/30 reveal group flex flex-col shadow-lg">
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        <span class="tag-neon-blue px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">International</span>
-                        <span class="tag-neon-green px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">1st Prize</span>
-                        <span class="tag-neon-gold px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">₹8,000 CASH AWARD</span>
+                <div class="ultra-glass p-5 rounded-[2rem] flex flex-col shadow-lg border-sky-500/20">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-neon-blue px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">International</span>
+                        <span class="tag-neon-green px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">1st Prize</span>
+                        <span class="tag-neon-gold px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">₹8,000 CASH AWARD</span>
                     </div>
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4 relative cursor-zoom-in" onclick="openLightbox('assets/cert-visai.png')">
+                    <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/cert-visai.png')">
                         <div class="slideshow-container w-full h-full relative">
                             <img src="assets/cert-visai.png" class="slide active">
                             <img src="assets/visai-stage.jpg" class="slide">
                         </div>
                     </div>
-                    <div class="mt-auto">
-                        <h4 class="text-lg md:text-xl font-bold italic uppercase">VISAI 2025</h4>
-                        <p class="mono text-[9px] md:text-[10px] text-sky-500 font-bold uppercase tracking-wider">Winner (First Prize)</p>
+                    <div class="mt-auto px-1">
+                        <h4 class="text-xl font-bold italic uppercase text-white">VISAI 2025</h4>
+                        <p class="mono text-[10px] text-sky-400 font-bold uppercase tracking-wider mt-0.5">Winner (First Prize)</p>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-amber-500/30 reveal group flex flex-col shadow-lg">
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        <span class="tag-neon-gold px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">₹5,000 CASH AWARD</span>
-                        <span class="tag-neon-blue px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">Dinakaran Award</span>
+                <div class="ultra-glass p-5 rounded-[2rem] flex flex-col shadow-lg border-amber-500/20">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-neon-gold px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">₹5,000 CASH AWARD</span>
+                        <span class="tag-neon-blue px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">Dinakaran Award</span>
                     </div>
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4 relative cursor-zoom-in" onclick="openLightbox('assets/dinakaran-award.jpeg')">
+                    <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/dinakaran-award.jpeg')">
                         <div class="slideshow-container w-full h-full relative">
                             <img src="assets/dinakaran-award.jpeg" class="slide active">
                         </div>
                     </div>
-                    <div class="mt-auto">
-                        <h4 class="text-lg md:text-xl font-bold italic uppercase">Technical Excellence Award</h4>
-                        <p class="mono text-[9px] md:text-[10px] text-amber-500 font-bold uppercase tracking-wider">Awarded by Dinakaran News</p>
+                    <div class="mt-auto px-1">
+                        <h4 class="text-xl font-bold italic uppercase text-white">Technical Excellence Award</h4>
+                        <p class="mono text-[10px] text-amber-400 font-bold uppercase tracking-wider mt-0.5">Awarded by Dinakaran News</p>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 reveal group flex flex-col">
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        <span class="tag-neon-blue px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">International</span>
-                        <span class="tag-neon-purple px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">Honorable Mention</span>
+                <div class="ultra-glass p-5 rounded-[2rem] flex flex-col shadow-lg border-purple-500/20">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-neon-blue px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">International</span>
+                        <span class="tag-neon-purple px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">Honorable Mention</span>
                     </div>
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4 relative cursor-zoom-in" onclick="openLightbox('assets/cert-ieee.jpg')">
+                    <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/cert-ieee.jpg')">
                         <div class="slideshow-container w-full h-full relative">
                             <img src="assets/cert-ieee.jpg" class="slide active">
                             <img src="assets/ieee-tunisia-stage.jpg" class="slide">
                         </div>
                     </div>
-                    <div class="mt-auto">
-                        <h4 class="text-lg md:text-xl font-bold italic uppercase">IEEE YESIST'12</h4>
-                        <p class="mono text-[9px] md:text-[10px] text-sky-500 font-bold uppercase tracking-wider">Global Finalist - Tunisia | Honorable Mention Award</p>
+                    <div class="mt-auto px-1">
+                        <h4 class="text-xl font-bold italic uppercase text-white">IEEE YESIST'12</h4>
+                        <p class="mono text-[10px] text-sky-400 font-bold uppercase tracking-wider mt-0.5">Global Finalist — Tunisia | Honorable Mention Award</p>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 reveal group flex flex-col">
-                    <div class="flex flex-wrap gap-1.5 mb-4">
-                        <span class="tag-neon-green px-2.5 py-0.5 rounded-full text-[8px] font-black tracking-wider uppercase">1st Prize</span>
+                <div class="ultra-glass p-5 rounded-[2rem] flex flex-col shadow-lg">
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="tag-neon-green px-3 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase">1st Prize</span>
                     </div>
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4 relative cursor-zoom-in" onclick="openLightbox('assets/cert-srishti-win.jpg')">
+                    <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/cert-srishti-win.jpg')">
                         <div class="slideshow-container w-full h-full relative">
                             <img src="assets/cert-srishti-win.jpg" class="slide active">
                             <img src="assets/srishti-stage.jpg" class="slide">
                         </div>
                     </div>
-                    <div class="mt-auto">
-                        <h4 class="text-lg md:text-xl font-bold italic uppercase">Srishti Hackathon</h4>
-                        <p class="mono text-[9px] md:text-[10px] text-sky-500 font-bold uppercase tracking-wider">Winner (First Prize) | Internship Offer (6 Weeks)</p>
+                    <div class="mt-auto px-1">
+                        <h4 class="text-xl font-bold italic uppercase text-white">Srishti Hackathon</h4>
+                        <p class="mono text-[10px] text-sky-400 font-bold uppercase tracking-wider mt-0.5">Winner (First Prize) | Internship Offer (6 Weeks)</p>
                     </div>
                 </div>
 
@@ -350,43 +364,47 @@
         </div>
     </section>
 
-    <section id="internships" class="py-16 lg:py-24 bg-sky-500/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic text-white mb-12 reveal">Industrial <span class="text-sky-500">Experience.</span></h2>
+    <section id="internships" class="py-20 lg:py-28 bg-slate-950/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
+            <div class="mb-10 md:mb-14 text-center lg:text-left">
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic text-white">Industrial <span class="text-sky-400">Experience.</span></h2>
+                <p class="mono text-[9px] text-slate-500 tracking-widest uppercase mt-1">WORK HISTORY & RESIDENCY</p>
+            </div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 
                 <div class="reveal group">
-                    <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group-hover:border-sky-500/40 transition-all duration-500 h-full flex flex-col">
-                        <div class="cert-autofit-wrapper aspect-[4/3] mb-4 cursor-zoom-in" onclick="openLightbox('assets/cert-srishti.png')">
+                    <div class="ultra-glass p-5 rounded-[2rem] h-full flex flex-col">
+                        <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/cert-srishti.png')">
                             <img src="assets/cert-srishti.png" class="w-full h-full object-contain">
                         </div>
-                        <div class="mt-auto">
-                            <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase">Srishti Innovative Pvt.Ltd</p>
-                            <h4 class="text-lg md:text-xl font-black uppercase italic mt-0.5">AI+IOT Intern</h4>
+                        <div class="mt-auto px-1">
+                            <p class="mono text-sky-400 text-[10px] font-bold tracking-widest uppercase">Srishti Innovative Pvt. Ltd</p>
+                            <h4 class="text-lg font-black uppercase italic mt-0.5 text-white">AI + IoT Developer Intern</h4>
                         </div>
                     </div>
                 </div>
 
                 <div class="reveal group">
-                    <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group-hover:border-sky-500/40 transition-all duration-500 h-full flex flex-col">
-                        <div class="cert-autofit-wrapper aspect-[4/3] mb-4 cursor-zoom-in" onclick="openLightbox('assets/Quantanics_cert2.png')">
+                    <div class="ultra-glass p-5 rounded-[2rem] h-full flex flex-col">
+                        <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/Quantanics_cert2.png')">
                             <img src="assets/Quantanics_cert2.png" class="w-full h-full object-contain">
                         </div>
-                        <div class="mt-auto">
-                            <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase">Quantanics Techserv</p>
-                            <h4 class="text-lg md:text-xl font-black uppercase italic mt-0.5">Mobile App Dev</h4>
+                        <div class="mt-auto px-1">
+                            <p class="mono text-sky-400 text-[10px] font-bold tracking-widest uppercase">Quantanics Techserv</p>
+                            <h4 class="text-lg font-black uppercase italic mt-0.5 text-white">Mobile Application Developer</h4>
                         </div>
                     </div>
                 </div>
 
                 <div class="reveal group">
-                    <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group-hover:border-sky-500/40 transition-all duration-500 h-full flex flex-col">
-                        <div class="cert-autofit-wrapper aspect-[4/3] mb-4 cursor-zoom-in" onclick="openLightbox('assets/Quantanics_cert1.png')">
+                    <div class="ultra-glass p-5 rounded-[2rem] h-full flex flex-col">
+                        <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/Quantanics_cert1.png')">
                             <img src="assets/Quantanics_cert1.png" class="w-full h-full object-contain">
                         </div>
-                        <div class="mt-auto">
-                            <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-widest uppercase">Quantanics Techserv</p>
-                            <h4 class="text-lg md:text-xl font-black uppercase italic mt-0.5">Embedded & IOT</h4>
+                        <div class="mt-auto px-1">
+                            <p class="mono text-sky-400 text-[10px] font-bold tracking-widest uppercase">Quantanics Techserv</p>
+                            <h4 class="text-lg font-black uppercase italic mt-0.5 text-white">Embedded Systems & IoT Intern</h4>
                         </div>
                     </div>
                 </div>
@@ -395,98 +413,101 @@
         </div>
     </section>
 
-    <section id="marquee-section" class="py-16 lg:py-24 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 mb-8 reveal">
-            <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic">Technical <span class="text-sky-500">Validation.</span></h2>
-            <p class="mono text-[9px] md:text-[10px] text-slate-500 mt-1 tracking-widest uppercase">CERTIFICATIONS</p>
+    <section id="marquee-section" class="py-20 lg:py-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8 mb-10 text-center lg:text-left">
+            <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic text-white">Technical <span class="text-sky-400">Validation.</span></h2>
+            <p class="mono text-[9px] text-slate-500 mt-1 tracking-widest uppercase">GLOBAL CREDENTIALS</p>
         </div>
-        <div class="marquee-container py-2">
-            <div class="animate-marquee gap-4 md:gap-6" id="marquee-inner"></div>
+        <div class="marquee-container py-4 bg-slate-950/40 border-y border-white/5">
+            <div class="animate-marquee gap-6" id="marquee-inner"></div>
         </div>
     </section>
 
-    <section id="nptel" class="py-16 lg:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic mb-12 reveal">
-                NPTEL <span class="text-sky-500">Certifications.</span>
-            </h2>
+    <section id="nptel" class="py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
+            <div class="mb-12 text-center lg:text-left">
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase italic text-white">
+                    NPTEL <span class="text-sky-400">Certifications.</span>
+                </h2>
+                <p class="mono text-[9px] text-slate-500 tracking-widest uppercase mt-1">ACADEMIC STANDARDS EVALUATED BY IITs</p>
+            </div>
 
-            <div class="flex justify-center mb-12 md:mb-16 reveal">
-                <div class="ultra-glass p-4 md:p-6 rounded-[2rem] border-amber-500/30 max-w-sm md:max-w-md w-full flex flex-col shadow-xl">
+            <div class="flex justify-center mb-16">
+                <div class="ultra-glass p-5 md:p-6 rounded-[2rem] max-w-md w-full flex flex-col shadow-2xl border-amber-500/30">
                     <div class="flex justify-center mb-4">
-                        <span class="tag-neon-gold px-4 py-1 rounded-full text-[8px] md:text-[9px] font-black tracking-wider uppercase">NPTEL DISCIPLINE STAR</span>
+                        <span class="tag-neon-gold px-4 py-1 rounded-full text-[9px] font-black tracking-wider uppercase">NPTEL DISCIPLINE STAR</span>
                     </div>
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4 relative cursor-zoom-in" onclick="openLightbox('assets/nptel-star1.png')">
+                    <div class="cert-autofit-wrapper mb-4 cursor-zoom-in" onclick="openLightbox('assets/nptel-star1.png')">
                         <div class="slideshow-container w-full h-full relative">
                             <img src="assets/nptel-star1.png" class="slide active">
                             <img src="assets/nptel-star2.png" class="slide">
                         </div>
                     </div>
                     <div class="text-center">
-                        <h4 class="text-lg md:text-xl font-bold italic uppercase tracking-wide text-amber-400">Discipline Star Recognition</h4>
-                        <p class="mono text-[10px] md:text-[11px] text-slate-300 mt-0.5 uppercase tracking-wider">Continuous Academic Brilliance</p>
+                        <h4 class="text-xl font-bold italic uppercase tracking-wide text-amber-400">Discipline Star Recognition</h4>
+                        <p class="mono text-[10px] text-slate-300 mt-0.5 uppercase tracking-wider">Continuous Academic Brilliance</p>
                     </div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group cursor-zoom-in reveal flex flex-col" onclick="openLightbox('assets/nptel5.png')">
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4">
+                <div class="ultra-glass p-5 rounded-[2rem] cursor-zoom-in flex flex-col" onclick="openLightbox('assets/nptel5.png')">
+                    <div class="cert-autofit-wrapper mb-4">
                         <img src="assets/nptel5.png" class="w-full h-full object-contain">
                     </div>
                     <div class="mt-auto">
-                        <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Elite + Silver | Score: 76%</p>
+                        <p class="mono text-sky-400 text-[10px] font-bold tracking-wider uppercase">Elite + Silver | Score: 76%</p>
                         <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">The Joy Of Computing Using Python</h4>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group cursor-zoom-in reveal flex flex-col" onclick="openLightbox('assets/nptel6.png')">
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4">
+                <div class="ultra-glass p-5 rounded-[2rem] cursor-zoom-in flex flex-col" onclick="openLightbox('assets/nptel6.png')">
+                    <div class="cert-autofit-wrapper mb-4">
                         <img src="assets/nptel6.png" class="w-full h-full object-contain">
                     </div>
                     <div class="mt-auto">
-                        <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Score: 56%</p>
+                        <p class="mono text-sky-400 text-[10px] font-bold tracking-wider uppercase">Score: 56%</p>
                         <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">Social Networks</h4>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group cursor-zoom-in reveal flex flex-col" onclick="openLightbox('assets/nptel1.png')">
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4">
+                <div class="ultra-glass p-5 rounded-[2rem] cursor-zoom-in flex flex-col" onclick="openLightbox('assets/nptel1.png')">
+                    <div class="cert-autofit-wrapper mb-4">
                         <img src="assets/nptel1.png" class="w-full h-full object-contain">
                     </div>
                     <div class="mt-auto">
-                        <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Elite + Silver | Score: 78%</p>
-                        <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">Introduction to Industry 4.0 and Industrial Internet of Things</h4>
+                        <p class="mono text-sky-400 text-[10px] font-bold tracking-wider uppercase">Elite + Silver | Score: 78%</p>
+                        <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">Introduction to Industry 4.0 and IIoT</h4>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group cursor-zoom-in reveal flex flex-col" onclick="openLightbox('assets/nptel2.png')">
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4">
+                <div class="ultra-glass p-5 rounded-[2rem] cursor-zoom-in flex flex-col" onclick="openLightbox('assets/nptel2.png')">
+                    <div class="cert-autofit-wrapper mb-4">
                         <img src="assets/nptel2.png" class="w-full h-full object-contain">
                     </div>
                     <div class="mt-auto">
-                        <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Elite | Score: 61%</p>
+                        <p class="mono text-sky-400 text-[10px] font-bold tracking-wider uppercase">Elite | Score: 61%</p>
                         <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">Privacy & Security in Online Social Media</h4>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group cursor-zoom-in reveal flex flex-col" onclick="openLightbox('assets/nptel3.png')">
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4">
+                <div class="ultra-glass p-5 rounded-[2rem] cursor-zoom-in flex flex-col" onclick="openLightbox('assets/nptel3.png')">
+                    <div class="cert-autofit-wrapper mb-4">
                         <img src="assets/nptel3.png" class="w-full h-full object-contain">
                     </div>
                     <div class="mt-auto">
-                        <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Elite | Score: 61%</p>
+                        <p class="mono text-sky-400 text-[10px] font-bold tracking-wider uppercase">Elite | Score: 61%</p>
                         <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">Responsible & Safe AI Systems</h4>
                     </div>
                 </div>
 
-                <div class="ultra-glass p-4 md:p-5 rounded-[2rem] border-white/5 group cursor-zoom-in reveal flex flex-col" onclick="openLightbox('assets/nptel4.png')">
-                    <div class="cert-autofit-wrapper aspect-[4/3] mb-4">
+                <div class="ultra-glass p-5 rounded-[2rem] cursor-zoom-in flex flex-col" onclick="openLightbox('assets/nptel4.png')">
+                    <div class="cert-autofit-wrapper mb-4">
                         <img src="assets/nptel4.png" class="w-full h-full object-contain">
                     </div>
                     <div class="mt-auto">
-                        <p class="mono text-sky-500 text-[9px] md:text-[10px] font-bold tracking-wider uppercase">Score: 55%</p>
+                        <p class="mono text-sky-400 text-[10px] font-bold tracking-wider uppercase">Score: 55%</p>
                         <h4 class="text-base md:text-lg font-bold uppercase mt-0.5 italic leading-tight text-white">Ethical Hacking</h4>
                     </div>
                 </div>
@@ -495,35 +516,34 @@
         </div>
     </section>
 
-    <section id="department-award" class="py-20 lg:py-28">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="text-center mb-10 md:mb-14 reveal">
-                <span class="tag-neon-gold px-4 py-1.5 rounded-full text-[9px] md:text-[10px] font-black uppercase">Recognition & Excellence</span>
-                <h2 class="mt-4 md:mt-6 text-3xl sm:text-5xl md:text-6xl font-black uppercase italic text-amber-500">Department Achievement Award</h2>
-                <p class="text-slate-400 mt-4 text-sm md:text-base max-w-3xl mx-auto">
-                    Honored by the Department of Artificial Intelligence and Data Science for academic excellence,
-                    innovation activities, project contributions, technical leadership and competition achievements.
+    <section id="department-award" class="py-20 lg:py-28 bg-slate-950/40 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 xl:px-8">
+            <div class="text-center mb-12">
+                <span class="tag-neon-gold px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest">Institutional Recognition</span>
+                <h2 class="mt-4 text-3xl sm:text-5xl md:text-6xl font-black uppercase italic text-amber-500">Department Achievement Award</h2>
+                <p class="text-slate-400 mt-4 text-base max-w-3xl mx-auto leading-relaxed">
+                    Honored by the Department of Artificial Intelligence and Data Science for superior academic engineering excellence, research projects, technical leadership, and global competition victories.
                 </p>
             </div>
 
-            <div class="ultra-glass rounded-[2rem] p-4 md:p-8 border border-amber-500/20 reveal">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+            <div class="ultra-glass rounded-[2.5rem] p-5 md:p-8 border border-amber-500/20">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-                    <div class="group">
-                        <div onclick="openLightbox('assets/department-medal.jpg')" class="cursor-zoom-in h-[280px] md:h-[340px] bg-slate-950/40 rounded-2xl border border-white/10 flex items-center justify-center p-3 overflow-hidden hover:border-amber-500/50 transition-all duration-500">
-                            <img src="assets/department-medal.jpg" class="max-w-full max-h-full object-contain transition duration-700 group-hover:scale-105">
+                    <div class="group cursor-zoom-in" onclick="openLightbox('assets/department-medal.jpg')">
+                        <div class="aspect-[4/3] bg-slate-950/60 rounded-2xl border border-white/5 flex items-center justify-center p-3 overflow-hidden group-hover:border-amber-500/40 transition-all duration-500">
+                            <img src="assets/department-medal.jpg" class="w-full h-full object-contain transition duration-500 group-hover:scale-103">
                         </div>
                     </div>
 
-                    <div class="group">
-                        <div onclick="openLightbox('assets/department-stage.jpg')" class="cursor-zoom-in h-[280px] md:h-[340px] bg-slate-950/40 rounded-2xl border border-white/10 flex items-center justify-center p-3 overflow-hidden hover:border-sky-500/50 transition-all duration-500">
-                            <img src="assets/department-stage.jpg" class="max-w-full max-h-full object-contain transition duration-700 group-hover:scale-105">
+                    <div class="group cursor-zoom-in" onclick="openLightbox('assets/department-stage.jpg')">
+                        <div class="aspect-[4/3] bg-slate-950/60 rounded-2xl border border-white/5 flex items-center justify-center p-3 overflow-hidden group-hover:border-sky-500/40 transition-all duration-500">
+                            <img src="assets/department-stage.jpg" class="w-full h-full object-contain transition duration-500 group-hover:scale-103">
                         </div>
                     </div>
 
-                    <div class="group">
-                        <div onclick="openLightbox('assets/department-poster.jpg')" class="cursor-zoom-in h-[280px] md:h-[340px] bg-slate-950/40 rounded-2xl border border-white/10 flex items-center justify-center p-3 overflow-hidden hover:border-purple-500/50 transition-all duration-500">
-                            <img src="assets/department-poster.jpg" class="max-w-full max-h-full object-contain transition duration-700 group-hover:scale-105">
+                    <div class="group cursor-zoom-in" onclick="openLightbox('assets/department-poster.jpg')">
+                        <div class="aspect-[4/3] bg-slate-950/60 rounded-2xl border border-white/5 flex items-center justify-center p-3 overflow-hidden group-hover:border-purple-500/40 transition-all duration-500">
+                            <img src="assets/department-poster.jpg" class="w-full h-full object-contain transition duration-500 group-hover:scale-103">
                         </div>
                     </div>
 
@@ -532,51 +552,52 @@
         </div>
     </section>
 
-    <section id="contact" class="py-16 lg:py-24">
+    <section id="contact" class="py-20 lg:py-28">
         <div class="max-w-6xl mx-auto px-4 text-center">
-
-            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black uppercase mb-10 md:mb-12 reveal">
-                Let's <span class="text-sky-500">Connect.</span>
+            <h2 class="text-4xl sm:text-6xl font-black uppercase tracking-tight mb-12">
+                Let's <span class="text-sky-400">Connect.</span>
             </h2>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 reveal">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
-                <a href="mailto:info.sujays@gmail.com"
-                   class="ultra-glass p-6 md:p-8 rounded-3xl border-white/5 hover:bg-sky-500/10 hover:border-sky-500/40 transition-all duration-500 group">
-                    <i class="fas fa-envelope text-3xl md:text-4xl text-sky-500 mb-3 md:mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-black uppercase text-base md:text-lg mb-1 md:mb-2">Email</h3>
-                    <p class="text-slate-300 text-xs md:text-sm break-all">info.sujays@gmail.com</p>
+                <a href="mailto:info.sujays@gmail.com" class="ultra-glass p-6 rounded-3xl group flex flex-col justify-between h-full hover:border-sky-400/40">
+                    <i class="fas fa-envelope text-3xl text-sky-400 mb-4 group-hover:scale-105 transition-transform"></i>
+                    <div>
+                        <h3 class="font-bold uppercase text-sm mb-1 text-white">Email</h3>
+                        <p class="text-slate-300 text-xs break-all mono">info.sujays@gmail.com</p>
+                    </div>
                 </a>
 
-                <a href="tel:+918122141673"
-                   class="ultra-glass p-6 md:p-8 rounded-3xl border-white/5 hover:bg-sky-500/10 hover:border-sky-500/40 transition-all duration-500 group">
-                    <i class="fas fa-phone text-3xl md:text-4xl text-sky-500 mb-3 md:mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-black uppercase text-base md:text-lg mb-1 md:mb-2">Phone</h3>
-                    <p class="text-slate-300 text-xs md:text-sm">+91 81221 41673</p>
+                <a href="tel:+918122141673" class="ultra-glass p-6 rounded-3xl group flex flex-col justify-between h-full hover:border-sky-400/40">
+                    <i class="fas fa-phone text-3xl text-sky-400 mb-4 group-hover:scale-105 transition-transform"></i>
+                    <div>
+                        <h3 class="font-bold uppercase text-sm mb-1 text-white">Phone</h3>
+                        <p class="text-slate-300 text-xs mono">+91 81221 41673</p>
+                    </div>
                 </a>
 
-                <a href="https://www.linkedin.com/in/sujay-s-ai"
-                   target="_blank"
-                   class="ultra-glass p-6 md:p-8 rounded-3xl border-white/5 hover:bg-blue-500/10 hover:border-blue-500/40 transition-all duration-500 group">
-                    <i class="fab fa-linkedin text-3xl md:text-4xl text-blue-500 mb-3 md:mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-black uppercase text-base md:text-lg mb-1 md:mb-2">LinkedIn</h3>
-                    <p class="text-slate-300 text-xs md:text-sm">View My Profile</p>
+                <a href="https://www.linkedin.com/in/sujay-s-ai" target="_blank" class="ultra-glass p-6 rounded-3xl group flex flex-col justify-between h-full hover:border-indigo-500/40">
+                    <i class="fab fa-linkedin text-3xl text-indigo-400 mb-4 group-hover:scale-105 transition-transform"></i>
+                    <div>
+                        <h3 class="font-bold uppercase text-sm mb-1 text-white">LinkedIn</h3>
+                        <p class="text-slate-300 text-xs mono">www.linkedin.com/in/sujay-s-ai</p>
+                    </div>
                 </a>
 
-                <a href="https://github.com/Sujay-0302"
-                   target="_blank"
-                   class="ultra-glass p-6 md:p-8 rounded-3xl border-white/5 hover:bg-white/10 hover:border-white/30 transition-all duration-500 group">
-                    <i class="fab fa-github text-3xl md:text-4xl text-white mb-3 md:mb-4 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="font-black uppercase text-base md:text-lg mb-1 md:mb-2">GitHub</h3>
-                    <p class="text-slate-300 text-xs md:text-sm">Explore My Projects</p>
+                <a href="https://github.com/Sujay-0302" target="_blank" class="ultra-glass p-6 rounded-3xl group flex flex-col justify-between h-full hover:border-rose-400/40">
+                    <i class="fab fa-github text-3xl text-white mb-4 group-hover:scale-105 transition-transform"></i>
+                    <div>
+                        <h3 class="font-bold uppercase text-sm mb-1 text-white">GitHub</h3>
+                        <p class="text-slate-300 text-xs mono">github.com/Sujay-0302</p>
+                    </div>
                 </a>
 
             </div>
         </div>
     </section>
 
-    <footer class="py-6 md:py-8 border-t border-white/5 text-center">
-        <p class="mono text-[8px] md:text-[9px] text-slate-600 tracking-[0.5em] uppercase">2026 // SUJAY S</p>
+    <footer class="py-8 border-t border-white/5 text-center bg-slate-950/80">
+        <p class="mono text-[10px] text-slate-500 tracking-[0.6em] uppercase">2026 // SUJAY S // ALL RIGHTS RESERVED</p>
     </footer>
 
     <script>
@@ -585,8 +606,8 @@
             2: "Python 101 for Data Science - IBM",
             3: "The Networking Essentials - CISCO Networking Academy",
             4: "Data Science & Analytics - HP",
-            5: "MS Excel - LinkedIN Badge - Top 30%",
-            6: "MS PowerPoint - LinkedIN Badge - Top 5%",
+            5: "MS Excel - LinkedIn Badge - Top 30%",
+            6: "MS PowerPoint - LinkedIn Badge - Top 5%",
             7: "Internship Offer Letter - Inspire Softech", 
             8: "Internship completion - Inspire Softech",
             9: "Innovation's Arena Challenge - Score: 78%",
@@ -606,19 +627,20 @@
             const ext = (i === 13) ? 'jpg' : 'png';
             const name = certNames[i] || `Credential ${i}`;
             return `
-                <div class="marquee-item px-2 md:px-3 group cursor-zoom-in" onclick="openLightbox('assets/cert_${i}.${ext}')">
-                    <div class="autofit-frame ultra-glass group-hover:border-sky-500 transition-all duration-500">
+                <div class="marquee-item px-3 group cursor-zoom-in" onclick="openLightbox('assets/cert_${i}.${ext}')">
+                    <div class="autofit-frame ultra-glass">
                         <img src="assets/cert_${i}.${ext}" loading="lazy">
                     </div>
-                    <div class="mt-3 px-3 py-2 bg-white/5 rounded-xl text-center">
-                        <p class="mono text-[9px] md:text-[10px] font-bold text-white uppercase tracking-wider group-hover:text-sky-400 line-clamp-2">${name}</p>
+                    <div class="mt-3 px-3 py-2 bg-slate-900/40 border border-white/5 rounded-xl text-center flex-grow flex items-center justify-center">
+                        <p class="mono text-[9px] font-bold text-slate-300 uppercase tracking-wider group-hover:text-sky-400 line-clamp-2 transition-colors">${name}</p>
                     </div>
                 </div>`;
         }
 
         let marqueeHTML = "";
-        for(let i=1; i<=18; i++) marqueeHTML += createItem(i);
-        for(let i=1; i<=8; i++) marqueeHTML += createItem(i); 
+        for(let loop=0; loop<3; loop++) {
+            for(let i=1; i<=18; i++) marqueeHTML += createItem(i);
+        }
         marqueeInner.innerHTML = marqueeHTML;
 
         function updateTime() {
@@ -628,129 +650,92 @@
         }
         setInterval(updateTime, 1000); updateTime();
 
-        // Magnetic Active Desktop Engine Control
+        // Custom Cursor Controls
         const cursor = document.getElementById('cursor');
         const follower = document.getElementById('cursor-follower');
         
         if(window.innerWidth > 1024 && cursor && follower) {
             document.addEventListener('mousemove', (e) => {
-                gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0 });
-                gsap.to(follower, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.15 });
+                cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+                follower.style.transform = `translate3d(${e.clientX - 22}px, ${e.clientY - 22}px, 0)`;
             });
 
             document.querySelectorAll('a, button, .cursor-zoom-in').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    gsap.to(follower, { scale: 1.3, borderColor: '#0ea5e9', backgroundColor: 'rgba(14, 165, 233, 0.1)', duration: 0.3 });
-                });
-                el.addEventListener('mouseleave', () => {
-                    gsap.to(follower, { scale: 1, borderColor: '#0ea5e9', backgroundColor: 'transparent', duration: 0.3 });
-                });
-            });
-
-            document.querySelectorAll('nav a').forEach(link => {
-                link.addEventListener('mousemove', (e) => {
-                    const rect = link.getBoundingClientRect();
-                    const x = e.clientX - rect.left - rect.width / 2;
-                    const y = e.clientY - rect.top - rect.height / 2;
-                    gsap.to(link, { x: x * 0.3, y: y * 0.3, duration: 0.3 });
-                });
-                link.addEventListener('mouseleave', () => {
-                    gsap.to(link, { x: 0, y: 0, duration: 0.3 });
-                });
+                el.addEventListener('mouseenter', () => follower.style.transform += ' scale(1.4)');
+                el.addEventListener('mouseleave', () => follower.style.transform = follower.style.transform.replace(' scale(1.4)', ''));
             });
         }
 
         window.addEventListener('scroll', () => {
             const btn = document.getElementById('floating-cv');
             if(btn) {
-                if (window.scrollY > 500) btn.classList.add('show');
+                if (window.scrollY > 400) btn.classList.add('show');
                 else btn.classList.remove('show');
             }
-
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            document.getElementById('scroll-progress').style.width = scrolled + "%";
+            document.getElementById('scroll-progress').style.width = ((winScroll / height) * 100) + "%";
         });
 
-        // Background Particles
+        // Background Star Particles Configuration
         const canvas = document.getElementById('canvas-bg');
         const ctx = canvas.getContext('2d');
         let particles = [];
         function initCanvas() {
             canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-            particles = Array.from({length: Math.min(65, window.innerWidth / 20)}, () => ({ 
+            particles = Array.from({length: Math.min(50, window.innerWidth / 25)}, () => ({ 
                 x: Math.random()*canvas.width, 
                 y: Math.random()*canvas.height, 
-                vx: (Math.random()-0.5)*0.25, 
-                vy: (Math.random()-0.5)*0.25 
+                vx: (Math.random()-0.5)*0.3, 
+                vy: (Math.random()-0.5)*0.3 
             }));
         }
         function drawParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height); 
             ctx.fillStyle = 'rgba(14, 165, 233, 0.4)';
             ctx.strokeStyle = 'rgba(14, 165, 233, 0.03)';
-            
             particles.forEach((p, i) => { 
                 p.x += p.vx; p.y += p.vy; 
                 if(p.x<0 || p.x>canvas.width) p.vx*=-1; 
                 if(p.y<0 || p.y>canvas.height) p.vy*=-1; 
-                
-                ctx.beginPath(); ctx.arc(p.x, p.y, 1, 0, Math.PI*2); ctx.fill(); 
-
+                ctx.beginPath(); ctx.arc(p.x, p.y, 1.2, 0, Math.PI*2); ctx.fill(); 
                 for(let j = i + 1; j < particles.length; j++) {
                     const p2 = particles[j];
                     const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if(dist < 120) {
-                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
-                    }
+                    if(dist < 135) { ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke(); }
                 }
             });
             requestAnimationFrame(drawParticles);
         }
         initCanvas(); drawParticles(); window.onresize = initCanvas;
 
+        // Banner Image Slideshow Loops
         document.querySelectorAll('.slideshow-container').forEach(container => {
             const slides = container.querySelectorAll('.slide'); let idx = 0;
             if (slides.length > 1) setInterval(() => { 
                 slides[idx].classList.remove('active'); 
                 idx = (idx + 1) % slides.length; 
                 slides[idx].classList.add('active'); 
-            }, 4000);
+            }, 3500);
         });
 
         function openLightbox(src) { 
             const lb = document.getElementById('lightbox'); 
-            lb.querySelector('img').src = src; 
-            lb.style.display = 'flex'; 
+            lb.querySelector('img').src = src; lb.style.display = 'flex'; 
         }
 
+        // GSAP Initialization
         gsap.registerPlugin(ScrollTrigger);
-        gsap.from(".hero-reveal > *", { y: 30, opacity: 0, stagger: 0.12, duration: 1, ease: "power4.out" });
         gsap.utils.toArray(".reveal").forEach(el => { 
-            gsap.from(el, { 
-                scrollTrigger: { trigger: el, start: "top 95%" }, 
-                y: 40, opacity: 0, duration: 0.8, ease: "power2.out" 
-            }); 
+            gsap.from(el, { scrollTrigger: { trigger: el, start: "top 92%" }, y: 30, opacity: 0, duration: 0.6, ease: "power2.out" }); 
         });
 
-        // Numeric Counter Engine implementation using GSAP ScrollTrigger
         gsap.utils.toArray('.count-engine').forEach(counter => {
             const targetVal = parseInt(counter.getAttribute('data-target'), 10);
-            gsap.fromTo(counter, 
-                { textContent: 0 },
-                {
-                    textContent: targetVal,
-                    duration: 2,
-                    ease: "power2.out",
-                    snap: { textContent: 1 },
-                    scrollTrigger: {
-                        trigger: counter,
-                        start: "top 90%",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
+            gsap.fromTo(counter, { textContent: 0 }, {
+                textContent: targetVal, duration: 1.8, ease: "power3.out", snap: { textContent: 1 },
+                scrollTrigger: { trigger: counter, start: "top 95%", toggleActions: "play none none none" }
+            });
         });
     </script>
 </body>
